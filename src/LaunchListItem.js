@@ -9,9 +9,11 @@ class LaunchListItem extends Component {
     };
 
     render() {
+        const mission = this.props.detail;
+        let launchDate = new Date(mission.launch_date_unix * 1000).toDateString();
         return (
             <div>
-                {this.props.detail.launch_date_unix} - Mission {this.props.detail.mission_name} ({this.props.detail.rocket.rocket_name})
+                {launchDate} - {mission.mission_name} ({mission.rocket.rocket_name})
             </div>
         );
     };
