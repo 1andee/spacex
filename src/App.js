@@ -1,35 +1,31 @@
 import React, { Component } from 'react';
+import Header from './Header';
+import Search from './Search';
+import Results from './Results';
 import './App.css';
 
 class App extends Component {
 
-  fetchApiData = () => {
-    fetch('https://api.spacexdata.com/v2/launches?nationality=Canada', {
-      method: 'get'
-    })
-    .then(response => response.json())
-    .then((json) => {
-      console.log(json);
-    })
-    .catch(error => console.error('Error:', error));
+  constructor() {
+    super();
+    this.state = {}
   }
 
-  componentDidMount() {
-    this.fetchApiData();
+  updateLaunchList = (json) => {
+    this.setState({
+      launchList: json
+    })
   };
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Space-X Demo App</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Header/>
+        <Search refreshMatchingRecords={this.updateLaunchList} />
+        <Results searchResults={this.state.launchList} />
       </div>
     );
-  }
+  };
 }
 
 export default App;
