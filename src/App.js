@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header/>
-        <Search refreshMatchingRecords={this.updateLaunchList} />
+        <Search fetchCB={this.updateLaunchList} />
         <Results searchResults={this.state.launchList} />
       </div>
     );
