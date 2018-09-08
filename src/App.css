@@ -50,9 +50,9 @@
   width: 50%;
   max-height: 80%;
   transform: translate(-50%, -50%);
-  padding: 30px;
+  padding: 45px 30px 30px;
   background-color: white;
-  border-radius: 15px;
+  border-radius: 10px;
   text-align: center;
   z-index: 99;
   overflow: auto;
@@ -77,4 +77,29 @@ button:hover {
   font-size: 20px;
   font-weight: bold;
   background-color: #d3d3d3;
+}
+
+.missionPatch {
+  float: left;
+  margin-top: -30px;
+  max-height: 180px;
+  max-width: 200px;
+  padding: 10px;
+}
+
+.superNicelyStyledRocketDeets {
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 25px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.superNicelyStyledRocketDeets break {
+  /* forces line break in flexbox */
+  flex-basis: 100%;
+  width: 0px; 
+  height: 0px; 
+  overflow: hidden;
 }

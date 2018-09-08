@@ -22,17 +22,25 @@ class Modal extends Component {
                 <div className="modal">
                     <button onClick={this.props.closeCB} className="modalCloseButton">x</button>
                     {(!data.upcoming) &&
-                        <img src={data.links.mission_patch_small} alt={data.mission_name}></img>
+                        <img src={data.links.mission_patch_small} className="missionPatch" alt={data.mission_name}></img>
                     }
-                    Flight No. {data.flight_number}
-                    Mission Name: {data.mission_name}
-                    Upcoming: {data.upcoming ? 'true' : 'false'}
-                    Rocket Name: {data.rocket.rocket_name}
-                    Rocket Type: {data.rocket.rocket_type}
-                    Launch Date: {data.launch_date_utc}
-                    Launch Site: {data.launch_site.site_name}
-                    Launch Success: {data.launch_success ? 'true' : 'false'}
-                    Details: {data.details}
+                    <div className="superNicelyStyledRocketDeets">
+                        <p>Flight No. {data.flight_number}</p>
+                        <p>Mission Name: {data.mission_name}</p>
+                        <p>Upcoming: {data.upcoming ? 'true' : 'false'}</p>
+                        <break></break>
+                        <p>Rocket Name: {data.rocket.rocket_name}</p>
+                        <p>Rocket Type: {data.rocket.rocket_type}</p>
+                        <break></break>
+                        <p>Launch Date: {new Date(data.launch_date_utc).toString()}</p>
+                        <p>Launch Site: {data.launch_site.site_name_long}</p>
+                        {(!data.upcoming) &&
+                            <p>Launch Success: {data.launch_success ? 'true' : 'false'}</p>
+                        }
+                        {(data.details) &&
+                            <p style={{ textAlign: "left" }}>Details: {data.details}</p>
+                        }
+                    </div>
                     {(video.id) &&
                         <YouTube videoId={video.id} opts={{height: '390', width: '640'}} />
                     }
