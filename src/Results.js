@@ -25,7 +25,7 @@ class Results extends Component {
             <div>
                 Results
                 {(this.props.searchResults) &&
-                    <div>
+                    <div className="notranslate">
                         {this.mapSearchResults()}
                     </div>
                 }
