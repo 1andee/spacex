@@ -4,15 +4,34 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 100px;
   padding: 20px;
   color: white;
+  padding-bottom: 40px;
 }
 
 .App-title {
   font-size: 1.5em;
 }
 
-.App-intro {
-  font-size: large;
+.results {
+  padding-top: 30px;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  background-color: #222;
+  border-radius: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.circle:hover {
+  cursor: default;
+}
+
+button:hover {
+  cursor: pointer;
 }
