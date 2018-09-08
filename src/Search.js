@@ -14,6 +14,7 @@ class Search extends Component {
             flight_number: '',
             orbit: '',
             order: 'DESC',
+            orbitTypes: ['LEO', 'ISS', 'PO', 'GTO', 'ES-L1', 'SSO', 'HCO', 'HEO'],
         }
     };
 
@@ -126,7 +127,6 @@ class Search extends Component {
 
     render() {
         const countryList = ['Bangladesh', 'Bulgaria', 'Canada', 'Hong Kong', 'Indonesia', 'Israel', 'Japan', 'Luxembourg', 'Malaysia', 'South Korea', 'Spain', 'Taiwan', 'Thailand', 'Turkmenistan', 'United States'];
-        const orbitTypes = ['LEO', 'ISS', 'PO', 'GTO', 'ES-L1', 'SSO', 'HCO', 'HEO'];
         return (
             <div>
                 Search
@@ -169,7 +169,7 @@ class Search extends Component {
                     <ReactTooltip id='orbit' place='right' type='info' effect='solid'>
                     <span>
                             Orbit Types:
-                            {orbitTypes.map((type, i) => {
+                            {this.state.orbitTypes.map((type, i) => {
                                 return (
                                     <p key={i}>{type}</p>
                                 )
