@@ -13,7 +13,7 @@ class Search extends Component {
             launch_year: '',
             flight_number: '',
             orbit: '',
-            orbitTypes: ['LEO', 'ISS', 'PO', 'GTO', 'ES-L1', 'SSO', 'HCO', 'HEO'],
+            order: 'DESC',
         }
     };
 
@@ -26,11 +26,16 @@ class Search extends Component {
                 this.props.refreshMatchingRecords(json);
                 this.isLoading = false;
             })
-            .catch(error => console.error('Whoops, something blew up:', error));
+            .catch((error) => {
+                this.setState({
+                    showError: true,
+                    errorText: `Whoops, something blew up: ${error}`,
+                })
+            })
     };
 
     componentDidMount() {
-        this.fetchApiData();
+        this.fetchApiData(`order=${this.state.order}`);
     };
 
     onChange = (e) => {
@@ -40,8 +45,7 @@ class Search extends Component {
     };
 
     validateFormFields = () => {
-        this.isLoading = true;
-        let { flight_number, launch_year, country, orbit } = this.state;
+        let { flight_number, launch_year, country, orbit, order } = this.state;
 
         let errorCount = 0;
         let errorText = [];
@@ -63,10 +67,25 @@ class Search extends Component {
             }
         }
 
+        if (country) {
+            if (country.trim().length === 0 || !isNaN(country)) {
+                // TODO: compare to valid array of country names for more precise error checking
+                errorCount++;
+                errorText.push(`Please enter a real country`);
+            }
+        }
+
         if (orbit) {
             if (!this.state.orbitTypes.includes(orbit)) {
                 errorCount++;
-                errorText.push(`Sorry, ${orbit} is not a recognized orbit type.`);
+                errorText.push(`${orbit} is not a recognized orbit type (case sensitive)`);
+            }
+        }
+
+        if (order) {
+            if (order !== 'DESC' && order !== 'ASC') {
+                errorCount++;
+                errorText.push(`Order must be ASC or DESC (case sensitive)`);
             }
         }
 
@@ -77,26 +96,32 @@ class Search extends Component {
                 errorText: errorText,
             })
         } else {
+            // success
             this.setState({
                 showError: false,
                 errorText: '',
             })
+            this.isLoading = true;
             let queryParams = this.buildQueryString();
             this.fetchApiData(queryParams);
         }
     }
 
     buildQueryString = () => {
-        let { flight_number, launch_year, country, orbit } = this.state;
-        let string = `flight_number=${flight_number}&launch_year=${launch_year}&nationality=${country}&orbit=${orbit}`;
+        let { flight_number, launch_year, country, orbit, order } = this.state;
+        country = country.trim();
+        let string = `flight_number=${flight_number}&launch_year=${launch_year}&nationality=${country}&orbit=${orbit}&order=${order}`;
         return string;
     }
 
     render() {
+        const countryList = ['Bangladesh', 'Bulgaria', 'Canada', 'Hong Kong', 'Indonesia', 'Israel', 'Japan', 'Luxembourg', 'Malaysia', 'South Korea', 'Spain', 'Taiwan', 'Thailand', 'Turkmenistan', 'United States'];
+        const orbitTypes = ['LEO', 'ISS', 'PO', 'GTO', 'ES-L1', 'SSO', 'HCO', 'HEO'];
         return (
             <div>
                 Search
                 <div>
+                    <p>Flight Number</p>
                     <input
                         type="text"
                         name="flight_number"
@@ -104,6 +129,7 @@ class Search extends Component {
                         value={this.state.flight_number}
                         onChange={this.onChange}
                     />
+                    <p>Launch Year</p>
                     <input
                         type="text"
                         name="launch_year"
@@ -111,6 +137,17 @@ class Search extends Component {
                         value={this.state.launch_year}
                         onChange={this.onChange}
                     />
+                    <p>Country</p><div className="circle" data-tip data-for='country'>?</div>
+                    <ReactTooltip id='country' place='right' effect='solid'>
+                        <span>
+                            Valid countries (as of Sept 2018):
+                            {countryList.map((country, i) => {
+                                return (
+                                    <p key={i}>{country}</p>
+                                )
+                            })}
+                        </span>
+                    </ReactTooltip>
                     <input
                         type="text"
                         name="country"
@@ -118,6 +155,17 @@ class Search extends Component {
                         value={this.state.country}
                         onChange={this.onChange}
                     />
+                    <p>Orbit Type</p><div className="circle" data-tip data-for='orbit'>?</div>
+                    <ReactTooltip id='orbit' place='right' effect='solid'>
+                    <span>
+                            Orbit Types:
+                            {orbitTypes.map((type, i) => {
+                                return (
+                                    <p key={i}>{type}</p>
+                                )
+                            })}
+                        </span>
+                    </ReactTooltip>
                     <input
                         type="text"
                         name="orbit"
@@ -125,6 +173,16 @@ class Search extends Component {
                         value={this.state.orbit}
                         onChange={this.onChange}
                     />
+                    <p>Order By</p>
+                    <input
+                        type="text"
+                        name="order"
+                        placeholder="Order By (ASC/DESC)"
+                        value={this.state.order}
+                        onChange={this.onChange}
+                    />
+                    <br/>
+                    <br/>
                     <button onClick={this.validateFormFields}>go</button>
                 </div>
                 {(this.state.showError) &&
