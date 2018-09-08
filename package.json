@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "license": "MIT",
   "dependencies": {
+    "js-video-url-parser": "^0.2.7",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.5",
-    "react-tooltip": "^3.8.1"
+    "react-tooltip": "^3.8.1",
+    "react-youtube": "^7.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
