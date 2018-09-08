@@ -23,7 +23,7 @@ class Search extends Component {
         })
             .then(response => response.json())
             .then((json) => {
-                this.props.refreshMatchingRecords(json);
+                this.props.fetchCB(json);
                 this.isLoading = false;
             })
             .catch((error) => {
@@ -44,6 +44,16 @@ class Search extends Component {
         })
     };
 
+    reset = () => {
+        this.setState({
+            country: '',
+            launch_year: '',
+            flight_number: '',
+            orbit: '',
+            order: 'DESC',
+        })
+    }
+
     validateFormFields = () => {
         let { flight_number, launch_year, country, orbit, order } = this.state;
 
@@ -51,7 +61,7 @@ class Search extends Component {
         let errorText = [];
 
         if (flight_number) {
-            let highest_valid_flight_num = 71;
+            let highest_valid_flight_num = 88;
             if (!(flight_number > 0) || !(flight_number <= highest_valid_flight_num)) {
                 errorCount++;
                 errorText.push(`Flight number must be between 1 and ${highest_valid_flight_num}`);
@@ -60,10 +70,10 @@ class Search extends Component {
 
         if (launch_year) {
             let first_launch_year = 2006;
-            let current_year = new Date().getFullYear();
-            if (!(launch_year >= first_launch_year) || !(launch_year <= current_year)) {
+            let highest_available_year = new Date().getFullYear() + 1;
+            if (!(launch_year >= first_launch_year) || !(launch_year <= highest_available_year)) {
                 errorCount++;
-                errorText.push(`Year must be between 2006 and ${current_year}`);
+                errorText.push(`Year must be between 2006 and ${highest_available_year}`);
             }
         }
 
@@ -138,7 +148,7 @@ class Search extends Component {
                         onChange={this.onChange}
                     />
                     <p>Country</p><div className="circle" data-tip data-for='country'>?</div>
-                    <ReactTooltip id='country' place='right' effect='solid'>
+                    <ReactTooltip id='country' place='right' type='info' effect='solid'>
                         <span>
                             Valid countries (as of Sept 2018):
                             {countryList.map((country, i) => {
@@ -156,7 +166,7 @@ class Search extends Component {
                         onChange={this.onChange}
                     />
                     <p>Orbit Type</p><div className="circle" data-tip data-for='orbit'>?</div>
-                    <ReactTooltip id='orbit' place='right' effect='solid'>
+                    <ReactTooltip id='orbit' place='right' type='info' effect='solid'>
                     <span>
                             Orbit Types:
                             {orbitTypes.map((type, i) => {
@@ -183,6 +193,7 @@ class Search extends Component {
                     />
                     <br/>
                     <br/>
+                    <button onClick={this.reset}>reset</button>
                     <button onClick={this.validateFormFields}>go</button>
                 </div>
                 {(this.state.showError) &&
