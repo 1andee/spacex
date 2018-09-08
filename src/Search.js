@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import ReactTooltip from 'react-tooltip'
 import './App.css';
 
 
