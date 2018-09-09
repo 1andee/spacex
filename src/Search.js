@@ -152,7 +152,7 @@ class Search extends Component {
                         <div className="inline">
                             <p className="heading"> Payload Nationality</p>
                             <p className="circle" data-tip data-for='country'>?</p>
-                            <ReactTooltip id='country' type='info' effect='solid'>
+                            <ReactTooltip id='country' place='bottom' type='info' effect='solid'>
                                 <span>
                                     Valid Nationalities (as of Sept 2018):
                                     {countryList.map((country, i) => {

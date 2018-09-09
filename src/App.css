@@ -159,18 +159,17 @@ button:focus {
 }
 
 .searchColumns {
-	display: -ms-flex;
-	display: -webkit-flex;
-	display: flex;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
 }
 
-.searchColumns > div {
-	width: 50%;
-	padding: 10px;
-}
-
-.searchColumns > div:first-child {
-	margin-right: 20px;
+@media (max-width: 760px) {
+  .searchColumns {
+    display: flex;
+    flex-direction:column;
+  }
 }
 
 .searchContainer {
