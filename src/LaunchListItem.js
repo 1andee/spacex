@@ -27,17 +27,14 @@ class LaunchListItem extends Component {
         const mission = this.props.detail;
         let launchDate = new Date(mission.launch_date_unix * 1000).toDateString();
         return (
-            <div>
-                <div onClick={this.openModal.bind(this, mission)}>
-                    {launchDate} - {mission.mission_name} ({mission.rocket.rocket_name})
-                </div>
+            <div className="resultRow">
+                <p className="heading">{launchDate} - {mission.mission_name} ({mission.rocket.rocket_name})</p>
+                <p className="openModalIcon" onClick={this.openModal.bind(this, mission)}>ℹ️</p>
                 {(this.state.showingModal) &&
-                    <div>
-                        <Modal
-                            data={this.state.selectedMission}
-                            closeCB={this.closeModal}
-                        />
-                    </div>
+                    <Modal
+                        data={this.state.selectedMission}
+                        closeCB={this.closeModal}
+                    />
                 }
             </div>
         );

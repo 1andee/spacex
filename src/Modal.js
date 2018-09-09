@@ -27,6 +27,7 @@ class Modal extends Component {
                     <div className="superNicelyStyledRocketDeets">
                         <p>Flight No. {data.flight_number}</p>
                         <p>Mission Name: {data.mission_name}</p>
+                        <break></break>
                         <p>Upcoming: {data.upcoming ? 'true' : 'false'}</p>
                         <break></break>
                         <p>Rocket Name: {data.rocket.rocket_name}</p>

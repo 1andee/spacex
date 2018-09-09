@@ -2,32 +2,35 @@
   text-align: center;
 }
 
-.App-header {
+.header {
   background-color: #222;
-  height: 100px;
+  height: 60px;
   padding: 20px;
   color: white;
   padding-bottom: 40px;
-}
-
-.App-title {
-  font-size: 1.5em;
 }
 
 .results {
   padding-top: 30px;
 }
 
+.inline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .circle {
-  width: 30px;
-  height: 30px;
-  background-color: #222;
-  color: white;
-  border-radius: 100%;
-  margin: 0 auto;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 10px;
+  background-color: #222;
+  color: white;
+  border-radius: 100%;
+  font-size: 14px;
 }
 .circle:hover {
   cursor: default;
@@ -47,25 +50,37 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 50%;
+  width: 65%;
   max-height: 80%;
   transform: translate(-50%, -50%);
-  padding: 45px 30px 30px;
+  padding: 45px 3% 3%;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 10px 0 0 10px;
   text-align: center;
+  font-weight: normal;
   z-index: 99;
   overflow: auto;
+}
+
+.modal::-webkit-scrollbar {
+  width: 4px;
+}
+
+.modal::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background-color: black;
+  outline: 1px solid slategrey;
 }
 
 button {
   border-radius: 5px;
 }
 
-button:hover {
-  cursor: pointer;
-  background-color: #222;
-  color: white;
+button:focus {
+  outline: none;
 }
 
 .modalCloseButton {
@@ -74,9 +89,16 @@ button:hover {
   right: 0;
   width: 40px;
   height: 40px;
+  margin: 3px;
   font-size: 20px;
   font-weight: bold;
   background-color: #d3d3d3;
+}
+
+.modalCloseButton:hover {
+  cursor: pointer;
+  background-color: #222;
+  color: white;
 }
 
 .missionPatch {
@@ -96,10 +118,87 @@ button:hover {
   text-align: left;
 }
 
+.superNicelyStyledRocketDeets p {
+  margin: 10px 0;
+}
+
 .superNicelyStyledRocketDeets break {
-  /* forces line break in flexbox */
+  /* forces line break between detail rows in modal */
   flex-basis: 100%;
   width: 0px; 
   height: 0px; 
   overflow: hidden;
+}
+
+.resultRow {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fbfbfb;
+  border-bottom: 1px solid #ccc;
+  padding: 0.1em 0.6em;
+}
+
+.resultRow .heading {
+  font-weight: normal;
+  font-size: 11px;
+}
+
+.openModalIcon {
+  font-size: 11px;
+}
+
+.openModalIcon:hover {
+  cursor: pointer;
+}
+
+.centerLaunchListItems {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 40%;
+}
+
+.searchColumns {
+	display: -ms-flex;
+	display: -webkit-flex;
+	display: flex;
+}
+
+.searchColumns > div {
+	width: 50%;
+	padding: 10px;
+}
+
+.searchColumns > div:first-child {
+	margin-right: 20px;
+}
+
+.searchContainer {
+  padding: 10px 0;
+}
+
+.buttonGroup {
+  padding-top: 10px;
+}
+
+.buttonGroup button {
+  width: 60px;
+  margin: 10px;
+  padding: 8px 8px;
+  background-color: #d3d3d3;
+  font-size: 14px;
+}
+
+.buttonGroup button:hover {
+  cursor: pointer;
+  background-color: #E4E4E4;
+}
+
+.resultsContainer {
+  padding: 10px 0;
+}
+
+.heading {
+  text-transform: uppercase;
+  font-weight: bold;
 }
