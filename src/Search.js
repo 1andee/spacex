@@ -153,7 +153,7 @@ class Search extends Component {
                             <p className="heading"> Payload Nationality</p>
                             <p className="circle" data-tip data-for='country'>?</p>
                             <ReactTooltip id='country' place='bottom' type='info' effect='solid'>
-                                <span>
+                                <span style={{ fontFamily: "sans-serif"}}>
                                     Valid Nationalities (as of Sept 2018):
                                     {countryList.map((country, i) => {
                                         return (
@@ -174,7 +174,7 @@ class Search extends Component {
                             <p className="heading">Orbit Type</p>
                             <p className="circle" data-tip data-for='orbit'>?</p>
                             <ReactTooltip id='orbit' place='bottom' type='info' effect='solid'>
-                                <span>
+                                <span style={{ fontFamily: "sans-serif"}}>
                                     Valid Orbit Types:
                                     {this.state.orbitTypes.map((type, i) => {
                                         return (
