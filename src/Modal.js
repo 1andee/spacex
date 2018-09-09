@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import urlParser from 'js-video-url-parser/lib/base';
-import 'js-video-url-parser/lib/provider/youtube';
+import urlParser from 'parse-youtube-url-1andee';
 import YouTube from 'react-youtube';
 import './App.css';
 
