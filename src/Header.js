@@ -5,8 +5,8 @@ class Header extends Component {
 
     render() {
         return (
-            <header className="App-header">
-                <h1 className="App-title">Space-X Demo App</h1>
+            <header className="header">
+                <h2 className="heading">SpaceX Launch Schedule / Manifest</h2>
             </header>
         );
     };

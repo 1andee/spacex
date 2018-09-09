@@ -13,7 +13,8 @@ class Search extends Component {
             launch_year: '',
             flight_number: '',
             orbit: '',
-            order: 'DESC',
+            order: 'ASC',
+            orbitTypes: ['LEO', 'ISS', 'PO', 'GTO', 'ES-L1', 'SSO', 'HCO', 'HEO'],
         }
     };
 
@@ -50,7 +51,7 @@ class Search extends Component {
             launch_year: '',
             flight_number: '',
             orbit: '',
-            order: 'DESC',
+            order: 'ASC',
         })
     }
 
@@ -61,7 +62,7 @@ class Search extends Component {
         let errorText = [];
 
         if (flight_number) {
-            let highest_valid_flight_num = 88;
+            let highest_valid_flight_num = 88; // as of 09 September 2018
             if (!(flight_number > 0) || !(flight_number <= highest_valid_flight_num)) {
                 errorCount++;
                 errorText.push(`Flight number must be between 1 and ${highest_valid_flight_num}`);
@@ -126,75 +127,85 @@ class Search extends Component {
 
     render() {
         const countryList = ['Bangladesh', 'Bulgaria', 'Canada', 'Hong Kong', 'Indonesia', 'Israel', 'Japan', 'Luxembourg', 'Malaysia', 'South Korea', 'Spain', 'Taiwan', 'Thailand', 'Turkmenistan', 'United States'];
-        const orbitTypes = ['LEO', 'ISS', 'PO', 'GTO', 'ES-L1', 'SSO', 'HCO', 'HEO'];
         return (
-            <div>
-                Search
-                <div>
-                    <p>Flight Number</p>
-                    <input
-                        type="text"
-                        name="flight_number"
-                        placeholder="Flight #"
-                        value={this.state.flight_number}
-                        onChange={this.onChange}
-                    />
-                    <p>Launch Year</p>
-                    <input
-                        type="text"
-                        name="launch_year"
-                        placeholder="Launch Year"
-                        value={this.state.launch_year}
-                        onChange={this.onChange}
-                    />
-                    <p>Country</p><div className="circle" data-tip data-for='country'>?</div>
-                    <ReactTooltip id='country' place='right' type='info' effect='solid'>
-                        <span>
-                            Valid countries (as of Sept 2018):
-                            {countryList.map((country, i) => {
-                                return (
-                                    <p key={i}>{country}</p>
-                                )
-                            })}
-                        </span>
-                    </ReactTooltip>
-                    <input
-                        type="text"
-                        name="country"
-                        placeholder="Country"
-                        value={this.state.country}
-                        onChange={this.onChange}
-                    />
-                    <p>Orbit Type</p><div className="circle" data-tip data-for='orbit'>?</div>
-                    <ReactTooltip id='orbit' place='right' type='info' effect='solid'>
-                    <span>
-                            Orbit Types:
-                            {orbitTypes.map((type, i) => {
-                                return (
-                                    <p key={i}>{type}</p>
-                                )
-                            })}
-                        </span>
-                    </ReactTooltip>
-                    <input
-                        type="text"
-                        name="orbit"
-                        placeholder="Orbit Type"
-                        value={this.state.orbit}
-                        onChange={this.onChange}
-                    />
-                    <p>Order By</p>
-                    <input
-                        type="text"
-                        name="order"
-                        placeholder="Order By (ASC/DESC)"
-                        value={this.state.order}
-                        onChange={this.onChange}
-                    />
-                    <br/>
-                    <br/>
-                    <button onClick={this.reset}>reset</button>
-                    <button onClick={this.validateFormFields}>go</button>
+            <div className="searchContainer">
+                <div className="searchColumns">
+                    <div>
+                        <p className="heading">Flight Number</p>
+                        <input
+                            type="text"
+                            name="flight_number"
+                            placeholder="Flight #"
+                            value={this.state.flight_number}
+                            onChange={this.onChange}
+                        />
+                        <p className="heading">Launch Year</p>
+                        <input
+                            type="text"
+                            name="launch_year"
+                            placeholder="Launch Year"
+                            value={this.state.launch_year}
+                            onChange={this.onChange}
+                        />
+                    </div>
+                    <div>
+                        <div className="inline">
+                            <p className="heading"> Payload Nationality</p>
+                            <p className="circle" data-tip data-for='country'>?</p>
+                            <ReactTooltip id='country' place='bottom' type='info' effect='solid'>
+                                <span style={{ fontFamily: "sans-serif"}}>
+                                    Valid Nationalities (as of Sept 2018):
+                                    {countryList.map((country, i) => {
+                                        return (
+                                            <p key={i}>{country}</p>
+                                        )
+                                    })}
+                                </span>
+                            </ReactTooltip>
+                        </div>
+                        <input
+                            type="text"
+                            name="country"
+                            placeholder="Country"
+                            value={this.state.country}
+                            onChange={this.onChange}
+                        />
+                        <div className="inline">
+                            <p className="heading">Orbit Type</p>
+                            <p className="circle" data-tip data-for='orbit'>?</p>
+                            <ReactTooltip id='orbit' place='bottom' type='info' effect='solid'>
+                                <span style={{ fontFamily: "sans-serif"}}>
+                                    Valid Orbit Types:
+                                    {this.state.orbitTypes.map((type, i) => {
+                                        return (
+                                            <p key={i}>{type}</p>
+                                        )
+                                    })}
+                                </span>
+                            </ReactTooltip>
+                        </div>
+                        <input
+                            type="text"
+                            name="orbit"
+                            placeholder="Orbit Type"
+                            value={this.state.orbit}
+                            onChange={this.onChange}
+                        />
+                    </div>
+                    <div>
+                        <p className="heading">Order By</p>
+                        <input
+                            type="text"
+                            name="order"
+                            placeholder="Order By (ASC/DESC)"
+                            value={this.state.order}
+                            onChange={this.onChange}
+                        />
+                    </div>
+                </div>
+                <div className="buttonGroup">
+                    <button onClick={this.reset}>RESET</button>
+                    <button onClick={this.validateFormFields}>GO</button>
                 </div>
                 {(this.state.showError) &&
                     <div>

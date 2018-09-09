@@ -22,10 +22,10 @@ class Results extends Component {
 
     render() {
         return (
-            <div>
-                Results
+            <div className="resultsContainer">
+                <h3 className="heading">Results</h3>
                 {(this.props.searchResults) &&
-                    <div className="notranslate">
+                    <div className="notranslate centerLaunchListItems">
                         {this.mapSearchResults()}
                     </div>
                 }
