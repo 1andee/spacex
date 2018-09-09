@@ -201,3 +201,7 @@ button:focus {
   text-transform: uppercase;
   font-weight: bold;
 }
+
+input {
+  border: 1px solid black;
+}
