@@ -42,7 +42,9 @@ class Modal extends Component {
                         }
                     </div>
                     {(video.id) &&
-                        <YouTube videoId={video.id} opts={{height: '390', width: '640'}} />
+                        <div className="videoWrapper">
+                            <YouTube videoId={video.id} />
+                        </div>
                     }
                 </div>
             </div>
