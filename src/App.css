@@ -20,20 +20,12 @@
   align-items: center;
 }
 
-.circle {
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 10px;
-  background-color: #222;
-  color: white;
-  border-radius: 100%;
-  font-size: 14px;
+.fa {
+  font-size: 16px;
 }
-.circle:hover {
-  cursor: default;
+
+.inline .fa {
+  margin-left: 5px;
 }
 
 .overlay {
@@ -136,6 +128,11 @@ button:focus {
   background-color: #fbfbfb;
   border-bottom: 1px solid #ccc;
   padding: 0.1em 0.6em;
+  cursor: pointer;
+}
+
+.resultRow:hover {
+  background-color: #e1e1e1
 }
 
 .resultRow .heading {
@@ -181,9 +178,9 @@ button:focus {
 }
 
 .buttonGroup button {
-  width: 60px;
+  width: 65px;
   margin: 10px;
-  padding: 8px 8px;
+  padding: 8px;
   background-color: #d3d3d3;
   font-size: 14px;
 }

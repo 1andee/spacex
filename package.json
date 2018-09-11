@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "dependencies": {
+    "font-awesome": "^4.7.0",
     "parse-youtube-url-1andee": "^0.0.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",

@@ -1,5 +1,7 @@
 ## spacex-app
 
+Searchable list of rocket launches using [SpaceX Rest API V2](https://github.com/r-spacex/SpaceX-API/) 🚀
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 ### functional requirements

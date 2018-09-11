@@ -151,7 +151,7 @@ class Search extends Component {
                     <div>
                         <div className="inline">
                             <p className="heading"> Payload Nationality</p>
-                            <p className="circle" data-tip data-for='country'>?</p>
+                            <i className="fa fa-question-circle" data-tip data-for="country" aria-hidden="true" />
                             <ReactTooltip id='country' place='bottom' type='info' effect='solid'>
                                 <span style={{ fontFamily: "sans-serif"}}>
                                     Valid Nationalities (as of Sept 2018):
@@ -172,7 +172,7 @@ class Search extends Component {
                         />
                         <div className="inline">
                             <p className="heading">Orbit Type</p>
-                            <p className="circle" data-tip data-for='orbit'>?</p>
+                            <i className="fa fa-question-circle" data-tip data-for="orbit" aria-hidden="true" />
                             <ReactTooltip id='orbit' place='bottom' type='info' effect='solid'>
                                 <span style={{ fontFamily: "sans-serif"}}>
                                     Valid Orbit Types:

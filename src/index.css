@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Brandon Grotesque';
-  src: url("./brandon.otf") format("opentype");
+  src: url("~/brandon.otf") format("opentype");
 }
 
 body {

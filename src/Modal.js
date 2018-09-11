@@ -33,7 +33,9 @@ class Modal extends Component {
                         <p>Rocket Type: {data.rocket.rocket_type}</p>
                         <break></break>
                         <p>Launch Date: {new Date(data.launch_date_utc).toString()}</p>
+                        <break></break>
                         <p>Launch Site: {data.launch_site.site_name_long}</p>
+                        <break></break>
                         {(!data.upcoming) &&
                             <p>Launch Success: {data.launch_success ? 'true' : 'false'}</p>
                         }
