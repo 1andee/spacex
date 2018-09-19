@@ -23,19 +23,13 @@ class Modal extends Component {
                     {(!data.upcoming) &&
                         <img src={data.links.mission_patch_small} className="missionPatch" alt={data.mission_name}></img>
                     }
-                    <div className="superNicelyStyledRocketDeets">
+                    <div className="modalLaunchDetails">
                         <p>Flight No. {data.flight_number}</p>
                         <p>Mission Name: {data.mission_name}</p>
-                        <break></break>
                         <p>Upcoming: {data.upcoming ? 'true' : 'false'}</p>
-                        <break></break>
                         <p>Rocket Name: {data.rocket.rocket_name}</p>
-                        <p>Rocket Type: {data.rocket.rocket_type}</p>
-                        <break></break>
                         <p>Launch Date: {new Date(data.launch_date_utc).toString()}</p>
-                        <break></break>
                         <p>Launch Site: {data.launch_site.site_name_long}</p>
-                        <break></break>
                         {(!data.upcoming) &&
                             <p>Launch Success: {data.launch_success ? 'true' : 'false'}</p>
                         }

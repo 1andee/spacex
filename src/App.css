@@ -101,7 +101,7 @@ button:focus {
   padding: 10px;
 }
 
-.superNicelyStyledRocketDeets {
+.modalLaunchDetails {
   display: flex; 
   flex-wrap: wrap;
   justify-content: space-between;
@@ -110,16 +110,9 @@ button:focus {
   text-align: left;
 }
 
-.superNicelyStyledRocketDeets p {
+.modalLaunchDetails p {
   margin: 10px 0;
-}
-
-.superNicelyStyledRocketDeets break {
-  /* forces line break between detail rows in modal */
   flex-basis: 100%;
-  width: 0px; 
-  height: 0px; 
-  overflow: hidden;
 }
 
 .resultRow {
